@@ -181,8 +181,15 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	 */
 	do_action( 'login_header' );
 	?>
-	<div id="login">
-		<h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php echo $login_header_text; ?></a></h1>
+	<div class="columns section-container">
+	  <div class="column is-8 bg-section" style="background-image:url('<?=get_template_directory_uri();?>/img/Log-in-page-SC.png');">
+	  	<div class='bg-shadow'></div>
+	  </div>
+	  <div class='column section-login'>
+		<div id="login" class="login">
+			<h1 class="title">Log In</h1>
+			<h4 class="subtitle is-6" align="center">to your account</h4>
+			<!-- <h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php echo $login_header_text; ?></a></h1> -->
 	<?php
 
 	unset( $login_header_url, $login_header_title );
@@ -249,10 +256,10 @@ function login_footer($input_id = '') {
 
 	// Don't allow interim logins to navigate away from the page.
 	if ( ! $interim_login ): ?>
-	<p id="backtoblog"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
+	<!-- <p id="backtoblog"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php
 		/* translators: %s: site title */
 		printf( _x( '&larr; Back to %s', 'site' ), get_bloginfo( 'title', 'display' ) );
-	?></a></p>
+	?></a></p> -->
 	<?php the_privacy_policy_link( '<div class="privacy-policy-page-link">', '</div>' ); ?>
 	<?php endif; ?>
 
@@ -272,7 +279,8 @@ function login_footer($input_id = '') {
 	 * @since 3.1.0
 	 */
 	do_action( 'login_footer' ); ?>
-	<div class="clear"></div>
+		</div>
+	</div>
 	</body>
 	</html>
 	<?php
@@ -828,7 +836,7 @@ case 'register' :
 <p id="nav">
 <a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
 <?php echo esc_html( $login_link_separator ); ?>
-<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Forgot Password?' ); ?></a>
 </p>
 
 <?php
@@ -1024,12 +1032,12 @@ default:
 
 <form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 	<p>
-		<label for="user_login"><?php _e( 'Username or Email Address' ); ?><br />
-		<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" /></label>
+		<!-- <label for="user_login"><?php _e( 'Username or Email Address' ); ?><br /> -->
+		<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" placeholder ="Username / E-mail" /></label>
 	</p>
 	<p>
-		<label for="user_pass"><?php _e( 'Password' ); ?><br />
-		<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input" value="" size="20" /></label>
+		<!-- <label for="user_pass"><?php _e( 'Password' ); ?><br /> -->
+		<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input" value="" size="20" placeholder='Password'/></label>
 	</p>
 	<?php
 	/**
@@ -1039,9 +1047,9 @@ default:
 	 */
 	do_action( 'login_form' );
 	?>
-	<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_html_e( 'Remember Me' ); ?></label></p>
+<!-- 	<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_html_e( 'Remember Me' ); ?></label></p> -->
 	<p class="submit">
-		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Log In'); ?>" />
+		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large user-submit" value="<?php esc_attr_e('Log In'); ?>" />
 <?php	if ( $interim_login ) { ?>
 		<input type="hidden" name="interim-login" value="1" />
 <?php	} else { ?>
@@ -1057,19 +1065,27 @@ default:
 <?php if ( ! $interim_login ) { ?>
 <p id="nav">
 <?php if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
-	if ( get_option( 'users_can_register' ) ) :
-		$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
 
-		/** This filter is documented in wp-includes/general-template.php */
-		echo apply_filters( 'register', $registration_url );
-
-		echo esc_html( $login_link_separator );
-	endif;
 	?>
-	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Forgot Password?' ); ?></a>
 <?php endif; ?>
 </p>
+
+<?php if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
+	if ( get_option( 'users_can_register' ) ) :
+
+		$registration_url = sprintf( 'Don\'t have an account ? <a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'REGISTER HERE' ) );
+
+		echo "<p class='bottom-class'>";
+		/** This filter is documented in wp-includes/general-template.php */
+		echo apply_filters( 'register', $registration_url );
+		echo "</p>";
+	endif;
+	?>
+<?php endif; ?>
+
 <?php } ?>
+
 
 <script type="text/javascript">
 function wp_attempt_focus(){
