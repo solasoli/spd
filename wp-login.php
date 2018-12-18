@@ -34,7 +34,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	global $error, $interim_login, $action;
 
 	// Don't index any of these forms
-	add_action( 'login_head', 'wp_sensitive_page_meta' );
+	// add_action( 'login_head', 'wp_sensitive_page_meta' );
 
 	add_action( 'login_head', 'wp_login_viewport_meta' );
 
@@ -80,11 +80,11 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	<!--<![endif]-->
 	<head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-	<title>SpeedCreed Login</title>
+	<title><?php echo $login_title; ?></title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="<?php get_template_directory_uri();?>/css/login-css.css">
-  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<?php
 
 	wp_enqueue_style( 'login-css' );
@@ -176,7 +176,6 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 
 	?>
 	</head>
-	<!-- <body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>"> -->
 	<body>
 	<?php
 	/**
@@ -186,15 +185,16 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	 */
 	do_action( 'login_header' );
 	?>
-	<div class="columns section-container">
-	  <div class="column is-9 bg-section" style="background-image:url('<?=get_template_directory_uri();?>/img/Log-in-page-SC.png');">
-	  	<div class='bg-shadow'></div>
+	<div class="columns is-fullheight image-area">
+	  <div class="column is-8 media is-full image" style="">
+	  <img src="<?php  echo get_template_directory_uri();?>/images/Log-in-page-SC.png" style="height: 100%;">
 	  </div>
-	  <div class='column section-login'>
-		<div id="login" class="login">
-			<h1 class="title">Log In</h1>
-			<h4 class="subtitle is-6" align="center">to your account</h4>
-			<!-- <h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php echo $login_header_text; ?></a></h1> -->
+	  <div class="field">
+  	<div class="column login-area">
+  		<div class="container login-text">
+			<h1 class="login1"><strong>Log In</strong></h1>			  			
+  		</div>
+  		<p class="acc-text">to your account</p>
 	<?php
 
 	unset( $login_header_url, $login_header_title );
@@ -287,6 +287,333 @@ function login_footer($input_id = '') {
 		</div>
 	</div>
 	</body>
+	<style>
+	/*Login - Register - Forgot Password - Check Email Styling Layout*/
+
+html, body{
+	margin: 0;
+	padding: 0;
+	/*overflow-y: hidden;*/
+
+}
+
+.columns:not(:last-child){
+		margin-bottom: -0.75rem;
+	}
+
+	.column{
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		padding-bottom: 0rem;
+	}
+
+a:link    {color:#000;}  /* unvisited link  */
+a:visited {color:#000;}  /* visited link    */
+a:hover   {color:#000;}  /* mouse over link */
+a:active  {color:#000;}  /* selected link   */
+/*Login - Register - Forgot Password - Check Email Styling Layout*/
+
+/*Login CSS*/
+
+	.acc-text{
+		font-style: italic;
+		/*padding-bottom: 80px;*/
+		padding-left: 152px;
+    	padding-bottom: 50px;
+    	margin-left: 91px;
+	}
+
+	
+    	
+    .input{
+    	width: 50%;
+    	max-width: 50%;
+    	border-color: #000;
+    	border-radius: 0;
+    }
+
+    .button .is-link .login-button{
+    	background-color: #000;
+    }
+
+    .checkbox{
+    	margin-left: 90px;
+    padding-bottom: 12px;
+	}
+	
+	.login1 {
+		
+		padding-top: 110px !important;
+		font-size: 27px;
+    	padding-left: 170px
+
+	}
+
+	.input{
+    	width: 50%;
+    	max-width: 50%;
+    	border-color: #000;
+    	border-radius: 0;
+    	margin-left: 92px;
+    	margin-bottom: 10px;
+    	text-align: center;		
+	}
+	
+	.forgot-pass-wp{
+		margin-top: 20px;
+	}
+
+
+
+    @media screen and (min-width: 1280px) {
+    	.container{
+    		max-width: 400px;
+    		width: 400px;
+    	}
+
+    	.acc-text{
+		font-style: italic;
+		padding-left: 152px;
+    	padding-bottom: 50px;
+    	margin-left: -9px;
+	}
+
+	.login1 {
+		
+		padding-top: 110px;
+		font-size: 27px;
+    padding-left: 170px
+
+	}
+	.input{
+    	width: 50%;
+    	max-width: 50%;
+    	border-color: #000;
+    	border-radius: 0;
+    	margin-left: 92px;
+    	margin-bottom: 10px;
+    	text-align: center;		
+    }
+
+    .button{
+    	background-color: #000 !important;
+    	border-radius: 0px;
+    	height: 36px;
+    	width: 200px;
+    	margin-left: 92px;	
+    }
+	
+    .checkbox{
+    	margin-left: 90px;
+    padding-bottom: 12px;
+    }
+	
+	
+	  
+
+
+	
+
+	.login1 {
+		padding-left: 152px;
+		padding-top: 110px;
+		font-size: 27px;
+	}
+}
+
+/*End of Login CSS*/
+
+/*Register CSS*/
+
+.acc-text-register{
+    	padding-top: 110px;
+    	font-style: italic;
+    	padding-left: 152px;
+    }
+
+.register-text{
+	padding-left: 152px;
+	font-size: 27px;
+	padding-bottom: 20px;
+
+}
+
+#input-register{
+	margin-left: 110px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	text-align: left;
+
+
+}
+
+#button-register{
+	margin-left: 110px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.acc-text-register-from{
+	padding-top: 110px;
+   	font-style: italic;
+    padding-left: 120px;
+    padding-bottom: 0.75rem;
+
+}
+
+.login-with-icon-facebook{
+	padding-left: 177px;
+		
+}
+
+.login-with-icon-google{
+	padding-left: 20px;
+}
+
+#already-have{
+	padding-top: 110px;
+	padding-left: 73px;
+}
+
+@media screen and (min-width: 1280px){
+	.acc-text-register{
+    	padding-top: 110px;
+    	font-style: italic;
+    	padding-left: 152px;
+    }
+
+.register-text{
+	padding-left: 152px;
+	font-size: 27px;
+	padding-bottom: 20px;
+
+}
+
+#input-register{
+	margin-left: 110px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	text-align: left;
+
+
+}
+
+#button-register{
+	margin-left: 110px;
+}
+
+.acc-text-register-from{
+	padding-top: 110px;
+   	font-style: italic;
+    padding-left: 120px;
+    padding-bottom: 0.75rem;
+
+}
+
+.login-with-icon-facebook{
+	padding-left: 177px;
+		
+}
+
+.login-with-icon-google{
+	padding-left: 20px;
+}	
+}
+
+/*End of Register CSS*/
+
+/*Forgot Password CSS*/
+
+.forgot-password-text{
+	padding-top: 55%;
+	padding-left: 22%;
+	padding-right: 22%;
+	padding-bottom: 20px;
+	text-align: center;
+	font-size: 18px;
+	color: #000;
+}
+
+#dont-have-forgot-password{
+	padding-top: 235px;
+	padding-left: 59px
+}
+
+@media screen and (min-width: 1280px){
+	
+	.forgot-password-text{
+	padding-top: 55%;
+	padding-left: 22%;
+	padding-right: 22%;
+	padding-bottom: 20px;
+	text-align: center;
+	font-size: 18px;
+	color: #000;
+}
+
+#dont-have-forgot-password{
+	padding-top: 235px;
+	padding-left: 59px
+}	
+}
+
+/*End of Forgot Password CSS	*/
+
+/*Check email CSS*/
+
+.check-email-text{
+	padding-top: 45%;
+	padding-left: 27%;
+	padding-right: 25%;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: #000;
+
+}
+
+.acc-text-check-email{
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 50px;
+	color: #000;
+	margin: 15%;
+
+}
+
+#button-check-email{
+	margin-left: 119px;
+}
+
+@media screen and (min-width: 1280px){
+	.check-email-text{
+	padding-top: 45%;
+	padding-left: 27%;
+	padding-right: 18%;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: #000;
+
+}
+
+.acc-text-check-email{
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 50px;
+	color: #000;
+	margin: 15%;
+
+}	
+}
+/*End of check email css*/
+	</style>
 	</html>
 	<?php
 }
@@ -838,10 +1165,10 @@ case 'register' :
 	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register'); ?>" /></p>
 </form>
 
-<p id="nav">
+<p class="forgot-pass-wp" >
 <a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
 <?php echo esc_html( $login_link_separator ); ?>
-<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Forgot Password?' ); ?></a>
+<a   href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Forgot Password?' ); ?></a>
 </p>
 
 <?php
@@ -1054,7 +1381,7 @@ default:
 	?>
 <!-- 	<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_html_e( 'Remember Me' ); ?></label></p> -->
 	<p class="submit">
-		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large user-submit" value="<?php esc_attr_e('Log In'); ?>" />
+		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large user-submit" value="<?php esc_attr_e('Submit');  ?>" style="color:#fff;" />
 <?php	if ( $interim_login ) { ?>
 		<input type="hidden" name="interim-login" value="1" />
 <?php	} else { ?>
@@ -1068,7 +1395,7 @@ default:
 </form>
 
 <?php if ( ! $interim_login ) { ?>
-<p id="nav">
+<p  class="forgot-password-wp" id="nav">
 <?php if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
 
 	?>
