@@ -80,10 +80,14 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	<!--<![endif]-->
 	<head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-	<title><?php echo $login_title; ?></title>
+	<title>SpeedCreed Login</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?php get_template_directory_uri();?>/css/login-css.css">
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<?php
 
-	wp_enqueue_style( 'login' );
+	wp_enqueue_style( 'login-css' );
 
 	/*
 	 * Remove all stored post data on logging out.
@@ -172,7 +176,8 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 
 	?>
 	</head>
-	<body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+	<!-- <body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>"> -->
+	<body>
 	<?php
 	/**
 	 * Fires in the login page header after the body tag is opened.
@@ -182,7 +187,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	do_action( 'login_header' );
 	?>
 	<div class="columns section-container">
-	  <div class="column is-8 bg-section" style="background-image:url('<?=get_template_directory_uri();?>/img/Log-in-page-SC.png');">
+	  <div class="column is-9 bg-section" style="background-image:url('<?=get_template_directory_uri();?>/img/Log-in-page-SC.png');">
 	  	<div class='bg-shadow'></div>
 	  </div>
 	  <div class='column section-login'>
